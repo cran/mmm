@@ -1,0 +1,2 @@
+importFrom(graphics, mosaicplot)
+export(mmm)
