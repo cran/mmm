@@ -1,74 +1,57 @@
 mmm <-
-function(data,nresp,family='gaussian',corstr='independence',coefnames=NULL,tol=0.001,maxiter=25,Mv=1,silent=TRUE){
-
-# Number of coefficients for a univariate response
-ncoef<-dim(data)[2]-nresp-1+1
-mod<-length(coefnames)%%ncoef
-if (mod!=0) stop("Length of coefficient names are not multiple of number of coefficients")
-
-# id of subjects
-id2<-unique(data[,1])   
-
-# reconstructing the response matrix
-resp<-NULL
-for (i in id2){
-resp1<-data[data[,1]==i,2:(1+nresp)]   
-resp2<-NULL
-for (j in 1:nresp){
-resp2<-c(resp2,resp1[,j])
+function (formula, id, data=NULL, R = NULL, b = NULL, tol = 0.001, maxiter = 25, 
+                  family = "gaussian", corstr = "independence", Mv = 1, silent = TRUE, 
+                  scale.fix = FALSE, scale.value = 1) 
+{
+    mf<-model.frame(formula=formula,data=data)
+    x <- as.matrix(model.matrix(attr(mf, "terms"), data=mf)[,-1])
+    if (ncol(x)==1) colnames(x)<-colnames(model.matrix(attr(mf, "terms"), data=mf))[2:(ncol(x)+1)]
+    y<-model.response(mf)
+    data<-as.matrix(cbind(id,y,x))
+    nresp<-ncol(y)
+    id2 <- unique(data[, 1])
+    resp <- NULL
+    for (i in id2) {
+        resp1 <- data[data[, 1] == i, 2:(1 + nresp)]
+        resp2 <- NULL
+        for (j in 1:nresp) {
+            resp2 <- c(resp2, resp1[, j])
+        }
+        resp <- c(resp, resp2)
+    }
+    resp <- matrix(resp)
+    ones <- rep(1, dim(data)[1])
+    covmat <- cbind(data[, 1], ones, data[, (1 + nresp + 1):dim(data)[2]])
+    cov3 <- NULL
+    for (k in id2) {
+        cov1 <- covmat[covmat[, 1] == k, 2:dim(covmat)[2]]
+        cov2 <- kronecker(diag(1, nresp), as.matrix(cov1))
+        cov3 <- rbind(cov3, cov2)
+    }
+    cov3<-data.frame(cov3)
+    if (length(colnames(y))==0){
+    vn1<-gsub("^.*\\$", "", unlist(strsplit(colnames(mf)[1], "[,)[:blank:]]")))
+    vn1<-vn1[!((1:length(vn1))%%2==0)]
+    }else{
+    vn1<-colnames(y)
+    }   
+    vn2<-c("Intercept",colnames(x))
+    vn3<-rep(vn1,each=length(vn2))
+    vnames<-paste(vn3,vn2,sep=".")
+    colnames(cov3)<-vnames
+    id5 <- NULL
+    for (t in id2) {
+        id3 <- data[data[, 1] == t, 1]
+        id4 <- rep(id3, nresp)
+        id5 <- c(id5, id4)
+    }
+   colnames(cov3)<-gsub('$','.',colnames(cov3),fixed=T) 
+   formula2<-as.formula(paste("resp ~ -1+", paste(colnames(cov3), collapse= "+")))
+    library(gee)
+    fit <- gee(formula=formula2, id = id5, data=cov3, R=R, b=b, tol=tol, maxiter=maxiter, 
+                   family = family, corstr = corstr, Mv = Mv, silent = silent,
+                   scale.fix=scale.fix, scale.value=scale.value)
+    fit$title<-"Multivariate Marginal Models"
+    fit$version<-"Version 1.1 (09/2012)"
+    fit
 }
-resp<-c(resp,resp2)
-}
-resp<-matrix(resp)
-
-# reconstructing the covariate matrix
-# additionally 1s in the 1st column
-# to have different intercepts for each response
-ones<-rep(1,dim(data)[1])
-covmat<-cbind(data[,1],ones,data[,(1+nresp+1):dim(data)[2]])
-cov3<-NULL
-for (k in id2){
-cov1<-covmat[covmat[,1]==k,2:dim(covmat)[2]]
-cov2<-kronecker(diag(1,nresp),as.matrix(cov1))
-cov3<-rbind(cov3,cov2)
-}
-
-# reconstructing the id column
-id<-NULL
-for (t in id2){
-id3<-data[data[,1]==t,1]
-id4<-rep(id3,nresp)
-id<-c(id,id4)
-}
-
-# loading gee library
-library(gee)
-
-## Fitting Multivariate Marginal Model
-gee1<-gee(resp~-1+cov3,id=id,family=family,corstr=corstr,tol=tol,maxiter=maxiter,Mv=Mv,silent=silent)
-summary1<-summary(gee1)
-# giving coefficient names if the user already defined them
-if (length(coefnames)!=0){
-row.names(summary1$coefficients)<-coefnames
-}
-list1<-list("Multivariate Marginal Model",multivout=summary1)
-
-
-# Fitting Univariate Marginal Models
-list2<-list()
-for (z in 1:nresp){
-gee2<-gee(data[,1+z]~as.matrix(data[,(1+nresp+1):dim(data)[2]]),id=data[,1],family=family,corstr=corstr,tol=tol,maxiter=maxiter,Mv=Mv,silent=silent)
-summary2<-summary(gee2)
-# giving coefficient names if the user already defined them
-if (length(coefnames)!=0){
-row.names(summary2$coefficients)<-coefnames[((z-1)*(ncoef)+1):(z*ncoef)]
-}
-list2[[z]]<-summary2
-}
-list2<-list("Univariate Marginal Models",univout=list2)
-
-# Ultimate output including outputs of multivariate and univariate models
-list3<-list(multiv=list1,univ=list2)
-list3
-}
-

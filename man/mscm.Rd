@@ -1,5 +1,5 @@
-\name{mscm.mmm}
-\alias{mscm.mmm}
+\name{mscm}
+\alias{mscm}
 \docType{data}
 \title{
 Mother's Stress and Children's Morbidity Study (MSCM)
@@ -7,7 +7,7 @@ Mother's Stress and Children's Morbidity Study (MSCM)
 \description{
  A data frame with 2004 observations on the following 14 variables. MSCM is a longitudinal dataset which includes daily information of the participants. There are 167 mothers and children enrolled in the study. 
 }
-\usage{data(mscm.mmm)}
+\usage{data(mscm)}
 \format{
 The details of the columns of the data frame are given below.
   \describe{
@@ -42,12 +42,11 @@ Zeger, S. L., Liang, K. L (1986). Longitudinal data analysis for discrete and co
 
 }
 \examples{
-data(mscm.mmm)
-mscm<-mscm.mmm
+data(mscm)
 head(mscm,10)
-length(unique(mscm$id)) #number of subjects in the study
 require(graphics)
 mosaicplot(~mscm$employed+mscm$housize+mscm$stress,
 color=TRUE)
 }
 \keyword{datasets}
+
