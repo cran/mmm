@@ -12,8 +12,8 @@ fits multivariate marginal models for multivariate longitudinal data for both co
 \tabular{ll}{
 Package: \tab mmm\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2011-09-26\cr
+Version: \tab 1.2\cr
+Date: \tab 2013-02-03\cr
 License: \tab GPL (>=2)\cr
 }
 }
