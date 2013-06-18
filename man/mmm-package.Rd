@@ -3,7 +3,7 @@
 \alias{mmm-package}
 \docType{package}
 \title{
-Multivariate Marginal Models
+mmm: an R package for analyzing multivariate longitudinal data with multivariate marginal models
 }
 \description{
 fits multivariate marginal models for multivariate longitudinal data for both continuous and discrete responses
@@ -12,8 +12,8 @@ fits multivariate marginal models for multivariate longitudinal data for both co
 \tabular{ll}{
 Package: \tab mmm\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2013-02-03\cr
+Version: \tab 1.3\cr
+Date: \tab 2013-18-06\cr
 License: \tab GPL (>=2)\cr
 }
 }

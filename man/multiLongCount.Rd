@@ -1,13 +1,13 @@
-\name{mlcd}
-\alias{mlcd}
+\name{multiLongCount}
+\alias{multiLongCount}
 \docType{data}
 \title{
-Multivariate Longitudinal Count Data (MLCD)
+Multivariate Longitudinal Count Data
 }
 \description{
-A data frame with 2000 observations on the following 6 variables. MLCD is a simulated bivariate longitudinal count dataset assuming there are 500 subjects in the study whose data are collected at 4 equally-spaced time points. 
+A data frame with 2000 observations on the following 6 variables. multiLongCount is a simulated bivariate longitudinal count dataset assuming there are 500 subjects in the study whose data are collected at 4 equally-spaced time points. 
 }
-\usage{data(mlcd)}
+\usage{data(multiLongCount)}
 \format{
   A data frame with 2000 observations on the following 6 variables.
   \describe{
@@ -20,7 +20,8 @@ A data frame with 2000 observations on the following 6 variables. MLCD is a simu
   }
 }
 \details{
-The covariates, X and time are the standardized values indeed. The related interaction is calculated by using these standardized values. X is a time-independent covariate.
+The covariates, X and time are the standardized values indeed. The related interaction is calculated by using these standardized values. X is a time-independent covariate. The 
+R script to generate the data set is given in the Examples section of the mmm function.
 }
 %\source{
 %
@@ -32,7 +33,7 @@ Erhardt, V. (2009). corcounts: Generate Correlated Count Random Variable. R pack
 URL http://CRAN.R-project.org/package=corcounts.
 }
 \examples{
-data(mlcd)
-plot(mlcd$X,mlcd$resp1)
+data(multiLongCount)
+plot(multiLongCount$X,multiLongCount$resp1)
 }
 \keyword{datasets}

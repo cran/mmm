@@ -1,13 +1,13 @@
-\name{mlgd}
-\alias{mlgd}
+\name{multiLongGaussian}
+\alias{multiLongGaussian}
 \docType{data}
 \title{
-Multivariate Longitudinal Continuous (Gaussian) Data (MLGD)
+Multivariate Longitudinal Continuous (Gaussian) Data
 }
 \description{
-A data frame with 2000 observations on the following 6 variables. MLGD is a simulated bivariate longitudinal continuous dataset assuming there are 500 subjects in the study whose data are collected at 4 equally-spaced time points. 
+A data frame with 2000 observations on the following 6 variables. multiLongGaussian is a simulated bivariate longitudinal continuous dataset assuming there are 500 subjects in the study whose data are collected at 4 equally-spaced time points. 
 }
-\usage{data(mlgd)}
+\usage{data(multiLongGaussian)}
 \format{
   A data frame with 2000 observations on the following 6 variables.
   \describe{
@@ -20,7 +20,8 @@ A data frame with 2000 observations on the following 6 variables. MLGD is a simu
   }
 }
 \details{
-The covariates, X and time are the standardized values indeed. The related interaction is calculated by using these standardized values. X is a time-independent covariate.
+The covariates, X and time are the standardized values indeed. The related interaction is calculated by using these standardized values. X is a time-independent covariate. The 
+R script to generate the data set is given in the Examples section of the mmm function.
 }
 %\source{
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
@@ -32,7 +33,7 @@ Genz, A., Bretz, F., Miwa, T., Mi, X., Leisch, F., Scheipl, F., Hothorn, T. (201
 URL http://CRAN.R-project.org/package=mvtnorm.
 }
 \examples{
-data(mlgd)
-plot(mlgd$X,mlgd$resp1)
+data(multiLongGaussian)
+plot(multiLongGaussian$X,multiLongGaussian$resp1)
 }
 \keyword{datasets}

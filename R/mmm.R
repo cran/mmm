@@ -1,6 +1,6 @@
 mmm <-
-function (formula, id, data=NULL, R = NULL, b = NULL, tol = 0.001, maxiter = 25, 
-                  family = "gaussian", corstr = "independence", Mv = 1, silent = TRUE, 
+function (formula, id, data=NULL, correlation = NULL, initEstim = NULL, tol = 0.001, maxiter = 25, 
+                  family = "gaussian", corStruct = "independence", Mv = 1, silent = TRUE, 
                   scale.fix = FALSE, scale.value = 1) 
 {
     mf<-model.frame(formula=formula,data=data)
@@ -48,10 +48,10 @@ function (formula, id, data=NULL, R = NULL, b = NULL, tol = 0.001, maxiter = 25,
    colnames(cov3)<-gsub('$','.',colnames(cov3),fixed=T) 
    formula2<-as.formula(paste("resp ~ -1+", paste(colnames(cov3), collapse= "+")))
     library(gee)
-    fit <- gee(formula=formula2, id = id5, data=cov3, R=R, b=b, tol=tol, maxiter=maxiter, 
-                   family = family, corstr = corstr, Mv = Mv, silent = silent,
+    fit <- gee(formula=formula2, id = id5, data=cov3, R=correlation, b=initEstim, tol=tol, maxiter=maxiter, 
+                   family = family, corstr = corStruct, Mv = Mv, silent = silent,
                    scale.fix=scale.fix, scale.value=scale.value)
     fit$title<-"Multivariate Marginal Models"
-    fit$version<-"Version 1.1 (09/2012)"
+    fit$version<-"Version 1.3 (06/2013)"
     fit
 }
