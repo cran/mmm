@@ -59,7 +59,11 @@ a user specified scale parameter value, appropriate when \code{scale.fix=TRUE}.
 Returns an onject of the results. See the examples given below.
 }
 \references{
-Asar, O. (2012). \emph{On multivariate longitudinal binary data models and their applications in forecasting}. MS Thesis, Middle East Technical University
+Asar, O. (2012). \emph{On multivariate longitudinal binary data models and their applications in forecasting}. MS Thesis, Middle East Technical University.
+Available online at http://www.lancaster.ac.uk/pg/asar/thesis-Ozgur-Asar
+
+Asar, O., Ilk, O. (2013). mmm: an R package for analyzing multivariate longitudinal data with multivariate marginal models, 
+\emph{Computer Methods and Programs in Biomedicine}, \bold{112}, 649-654.
 
 Liang, K. L., Zeger, S. L. (1986). Longitudinal data analysis using generalized linear models. \emph{Biometrika}, \bold{73}, 13-22.
 

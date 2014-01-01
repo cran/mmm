@@ -1,3 +1,4 @@
 importFrom(graphics, plot)
 importFrom(graphics, mosaicplot)
+importFrom(gee)
 export(mmm)

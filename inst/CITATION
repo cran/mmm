@@ -1,0 +1,26 @@
+citHeader("To cite the OOmisc package in publications use:")
+
+citEntry(entry="Manual",
+         title = "an R package for analyzing multivariate longitudinal data with multivariate marginal models",
+         author = personList(as.person("Ozgur Asar"),as.person("Ozlem Ilk")),
+         month="01",
+         year="2014",
+         note="R package version 1.4",
+         textVersion = "Ozgur Asar and Ozlem Ilk (2014). mmm:an R package for analyzing multivariate longitudinal data with multivariate marginal models. R package version
+  1.4."
+         )
+
+citEntry(entry = "Article",
+  title        = "mmm: an R package for analyzing multivariate longitudinal data with multivariate marginal models",
+  author       = personList(as.person("Ozgur Asar"),as.person("Ozlem Ilk")),
+  year         = "2013",
+  journal      = "Computer Methods and Programs in Biomedicine",
+  volume       = "112",
+  pages        = "649--654",
+
+  textVersion  =
+  paste("O. Asar, O. Ilk, (2013), mmm: an R package for analyzing multivariate longitudinal data with multivariate marginal models, 
+Computer Methods and Programs in Biomedicine 112 649--654")
+)
+
+

@@ -1,11 +1,12 @@
-8917e6e3eae772922f747e281c915aaa *DESCRIPTION
-adcb5380a06d4c2cd720ce1f73601d9b *NAMESPACE
-c9de5400e0cc6b619373a5ca8fe0d3eb *R/mmm.R
+df24f106d3a87139c1eb8b0d2abe56cc *DESCRIPTION
+73e5b2537f5ae10e0fe596dbb73eb406 *NAMESPACE
+016cb5c3850e2e1f3d131ac9ed764665 *R/mmm.R
 0a556b5f2f263b76a42a94c76c8dc03f *data/motherStress.rda
 f5184980d740103cb67c716ea1e1dfa2 *data/multiLongCount.rda
 9828ce1e9f0c05d63321a411f58d2135 *data/multiLongGaussian.rda
-be93e978097064d9c22d1be5ff427a48 *man/mmm-package.Rd
-f8bad1960bb37ce6ea7ecd72b87f8021 *man/mmm.Rd
+5b9166b3dc0e901f3b67d4f31c4c08e6 *inst/CITATION
+8b20abc9377148367efb9371f22bc80f *man/mmm-package.Rd
+e15546aa6df60ac897c0847d52d68d19 *man/mmm.Rd
 8c9a2702b8e9d80d31450b6a7adcf6f4 *man/motherStress.Rd
 d0f681b14977fc640c6463c613cfa8cc *man/multiLongCount.Rd
 53d683be99473addb3ee3cb019962f1b *man/multiLongGaussian.Rd

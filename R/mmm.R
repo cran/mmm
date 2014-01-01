@@ -47,11 +47,11 @@ function (formula, id, data=NULL, correlation = NULL, initEstim = NULL, tol = 0.
     }
    colnames(cov3)<-gsub('$','.',colnames(cov3),fixed=T) 
    formula2<-as.formula(paste("resp ~ -1+", paste(colnames(cov3), collapse= "+")))
-    library(gee)
+    #library(gee)
     fit <- gee(formula=formula2, id = id5, data=cov3, R=correlation, b=initEstim, tol=tol, maxiter=maxiter, 
                    family = family, corstr = corStruct, Mv = Mv, silent = silent,
                    scale.fix=scale.fix, scale.value=scale.value)
     fit$title<-"Multivariate Marginal Models"
-    fit$version<-"Version 1.3 (06/2013)"
+    fit$version<-"Version 1.4 (01/2014)"
     fit
 }
